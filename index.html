@@ -35,13 +35,13 @@
 
             <!-- Content -->
             <main class="s-layout__content">
-                <div id="nikemodal" class="modal" style="display:block; border-radius:10px;">
-                    <div class="modal-content" style="border-radius:10px;">
-                      <img src="images/nikelogo.png" style="width:70px;"/>
+                <div id="nikemodal" class="modal" style="display:block; border-radius:10px; border:none;box-shadow:none;">
+                    <div class="modal-content" style="border-radius:10px;border:none;box-shadow:none;">
+                      <img src="images/nikelogo.png" style="width:60px;"/>
                     </div>
                 </div>
-                <div id="stockxmodal" class="modal" style="display:block; border-radius:10px;">
-                    <div class="modal-content" style="border-radius:10px;">
+                <div id="stockxmodal" class="modal" style="display:block; border-radius:10px; box-shadow:none;border:none;">
+                    <div class="modal-content" style="border-radius:10px;border:none;box-shadow:none;">
                       <img src="images/stockxlogo.jpg" style="width:70px;"/>
                     </div>
                 </div>
@@ -52,12 +52,12 @@
                     let nikemodal = document.getElementById("nikemodal");
                     let stockxmodal = document.getElementById("stockxmodal");
                     if(sidebar.getBoundingClientRect().width >= 100) {
-                        nikemodal.style.marginLeft = '270px';
+                        nikemodal.style.marginLeft = '230px';
                     }
                     if(sidebar.getBoundingClientRect().width <= 100) {
-                        nikemodal.style.marginLeft = '100px';
+                        nikemodal.style.marginLeft = '90px';
                     }
-                    stockxmodal.style.marginLeft = `${nikemodal.getBoundingClientRect().width + nikemodal.offsetLeft+30}px`;
+                    stockxmodal.style.marginLeft = `${nikemodal.getBoundingClientRect().width + nikemodal.offsetLeft+20}px`;
                 }, 0);
                 function leavefunc (textid, iconid, iconurl) {
                     document.getElementById(textid).style.color = '#333333';
