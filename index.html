@@ -6,27 +6,25 @@
         <link rel="icon" href="images/flyingshoes.webp" type="image/x-icon"/>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
         
     </head>
     <body>
         <div class="s-layout">
             <div class="s-layout__sidebar">
                 <div>
-                    <img src="images/vershologo.png" style="height:65px;"/>
+                    <img id="logoid" src="images/vershologo.png" style="height:65px;"/>
                 </div>
                 <nav class="s-sidebar__nav">
                     <ul>
                         <li>
                         <a class="s-sidebar__nav-link" href="#versushome" onmouseleave="leavefunc('hometext', 'homeimg', 'images/home.png')" onmouseover="hoverfunc('hometext', 'homeimg', 'images/homeanimated.gif')">
-                            <img id="homeimg" style="height: 25px;" src="images/home.png"/><em id="hometext">Home</em>
+                            <img class="menuicon" id="homeimg" style="height: 25px;" src="images/home.png"/><em id="hometext">Home</em>
                         </a>
                         </li>
                         <li>
                         <a class="s-sidebar__nav-link" href="#trendspage" onmouseleave="leavefunc('trendstext', 'trendimg', 'images/trendchart.png')" onmouseover="hoverfunc('trendstext', 'trendimg', 'images/trendanimated.gif')">
-                            <img id="trendimg" style="height: 25px;" src="images/trendchart.png"/><em id="trendstext">Trends</em>
+                            <img class="menuicon" id="trendimg" style="height: 25px;" src="images/trendchart.png"/><em id="trendstext">Trends</em>
                         </a>
                         </li>
                     </ul>
@@ -34,10 +32,11 @@
             </div>
 
             <!-- Content -->
+
             <main class="s-layout__content">
                 <div id="nikemodal" class="modal" style="display:block; border-radius:10px; border:none;box-shadow:none;">
-                    <div class="modal-content" style="border-radius:10px;border:none;box-shadow:none;">
-                      <img class="logo" src="images/nikelogo.png" style="width:60px;"/>
+                    <div id="nikemodalcontent" class="modal-content" style="border-radius:10px;border:none;box-shadow:none;">
+                      
                     </div>
                 </div>
                 <div id="stockxmodal" class="modal" style="display:block; border-radius:10px; box-shadow:none;border:none;">
@@ -46,23 +45,49 @@
                     </div>
                 </div>
             </main>
+
             <script>
                 setInterval(function() {
                     let sidebar = document.getElementsByClassName('s-sidebar__nav')[0];
                     let nikemodal = document.getElementById("nikemodal");
                     let stockxmodal = document.getElementById("stockxmodal");
                     if(sidebar.getBoundingClientRect().width >= 56) {
-                        nikemodal.style.marginLeft = '260px';
-                        document.getElementsByClassName('logo')[0].style.width = '60px';
-                        document.getElementsByClassName('logo')[1].style.width = '60px';
+                        nikemodal.style.marginLeft = '220px';
+                        stockxmodal.style.height = '80%';
+                        nikemodal.style.height = '80%';
+                        stockxmodal.style.width = '37%';
+                        nikemodal.style.width = '37%';
+                        stockxmodal.style.marginLeft = `${nikemodal.getBoundingClientRect().width + nikemodal.offsetLeft+30}px`;
+                        stockxmodal.style.marginTop = `100px`;
+
                     }
                     if(sidebar.getBoundingClientRect().width <= 56) {
                         nikemodal.style.marginLeft = '70px';
-                        document.getElementsByClassName('logo')[0].style.width = '30px';
-                        document.getElementsByClassName('logo')[1].style.width = '30px';
+                        stockxmodal.style.height = '55%';
+                        nikemodal.style.height = '55%';
+                        stockxmodal.style.width = '90%';
+                        nikemodal.style.width = '90%';
+                        stockxmodal.style.marginLeft = `${nikemodal.offsetLeft+20}px`;
+                        console.log(nikemodal.offsetHeight);
+                        stockxmodal.style.marginTop = `${nikemodal.offsetHeight+110}px`;
+
                     }
-                    stockxmodal.style.marginLeft = `${nikemodal.getBoundingClientRect().width + nikemodal.offsetLeft}px`;
+                    
                 }, 0);
+                function nikereqListener () {
+                    console.log(this.responseText);
+                    document.getElementById('nikemodalcontent').insertAdjacentHTML('beforeend', this.responseText);
+                    document.getElementsByClassName('pre-l-wrapper mauto-sm d-sm-flx flx-dir-sm-r flx-jc-sm-sb flx-wr-sm-nw')[0].remove();
+                    document.getElementsByClassName('pre-l-brand-header d-sm-h d-lg-b z3')[0].remove();
+                    document.getElementsByClassName('icon-btn ripple d-sm-b')[0].remove();
+                    document.getElementsByClassName('pre-btn-header ripple mr3-sm d-sm-h d-lg-ib')[0].remove();
+                    document.getElementsByClassName('pre-search-input-box d-sm-b flx-dir-lg-c flx-ai-lg-fe d-lg-flx flx-gro-sm-1 flx-gro-lg-0')[0].remove();
+                }
+
+                var nikereq = new XMLHttpRequest();
+                nikereq.addEventListener("load", nikereqListener);
+                nikereq.open("GET", "https://www.nike.com/w?q=air%20jordan&vst=air%20jordan");
+                nikereq.send();
                 function leavefunc (textid, iconid, iconurl) {
                     document.getElementById(textid).style.color = '#333333';
                     document.getElementById(iconid).src = iconurl;
@@ -72,6 +97,11 @@
                     document.getElementById(iconid).src = iconurl;
                 }
             </script>
+            
         </div>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     </body>
 </html>
