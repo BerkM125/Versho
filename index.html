@@ -37,12 +37,12 @@
             <main class="s-layout__content">
                 <div id="nikemodal" class="modal" style="display:block; border-radius:10px; border:none;box-shadow:none;">
                     <div class="modal-content" style="border-radius:10px;border:none;box-shadow:none;">
-                      <img src="images/nikelogo.png" style="width:6.5vw;"/>
+                      <img src="images/nikelogo.png" style="width:60px;"/>
                     </div>
                 </div>
                 <div id="stockxmodal" class="modal" style="display:block; border-radius:10px; box-shadow:none;border:none;">
                     <div class="modal-content" style="border-radius:10px;border:none;box-shadow:none;">
-                      <img src="images/stockxlogo.jpg" style="width:7vw;"/>
+                      <img src="images/stockxlogo.jpg" style="width:60px;"/>
                     </div>
                 </div>
             </main>
@@ -51,10 +51,10 @@
                     let sidebar = document.getElementsByClassName('s-sidebar__nav')[0];
                     let nikemodal = document.getElementById("nikemodal");
                     let stockxmodal = document.getElementById("stockxmodal");
-                    if(sidebar.getBoundingClientRect().width >= 100) {
-                        nikemodal.style.marginLeft = '230px';
+                    if(sidebar.getBoundingClientRect().width >= 56) {
+                        nikemodal.style.marginLeft = '250px';
                     }
-                    if(sidebar.getBoundingClientRect().width <= 100) {
+                    if(sidebar.getBoundingClientRect().width <= 56) {
                         nikemodal.style.marginLeft = '90px';
                     }
                     stockxmodal.style.marginLeft = `${nikemodal.getBoundingClientRect().width + nikemodal.offsetLeft+20}px`;
