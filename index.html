@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Versho</title>
+        <link rel="stylesheet" href="vershostyles.css"/>
+        <link rel="icon" href="images/flyingshoes.webp" type="image/x-icon"/>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        
+    </head>
+    <body>
+        <div class="s-layout">
+            <div class="s-layout__sidebar">
+                <div>
+                    <img src="images/vershologo.png" style="height:65px;"/>
+                </div>
+                <nav class="s-sidebar__nav">
+                    <ul>
+                        <li>
+                        <a class="s-sidebar__nav-link" href="#versushome" onmouseleave="leavefunc('hometext', 'homeimg', 'images/home.png')" onmouseover="hoverfunc('hometext', 'homeimg', 'images/homeanimated.gif')">
+                            <img id="homeimg" style="height: 25px;" src="images/home.png"/><em id="hometext">Home</em>
+                        </a>
+                        </li>
+                        <li>
+                        <a class="s-sidebar__nav-link" href="#trendspage" onmouseleave="leavefunc('trendstext', 'trendimg', 'images/trendchart.png')" onmouseover="hoverfunc('trendstext', 'trendimg', 'images/trendanimated.gif')">
+                            <img id="trendimg" style="height: 25px;" src="images/trendchart.png"/><em id="trendstext">Trends</em>
+                        </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Content -->
+            <main class="s-layout__content">
+                <div id="nikemodal" class="modal" style="display:block; border-radius:10px;">
+                    <div class="modal-content" style="border-radius:10px;">
+                      <img src="images/nikelogo.png" style="width:70px;"/>
+                    </div>
+                </div>
+                <div id="stockxmodal" class="modal" style="display:block; border-radius:10px;">
+                    <div class="modal-content" style="border-radius:10px;">
+                      <img src="images/stockxlogo.jpg" style="width:70px;"/>
+                    </div>
+                </div>
+            </main>
+            <script>
+                setInterval(function() {
+                    let sidebar = document.getElementsByClassName('s-sidebar__nav')[0];
+                    let nikemodal = document.getElementById("nikemodal");
+                    let stockxmodal = document.getElementById("stockxmodal");
+                    if(sidebar.getBoundingClientRect().width >= 100) {
+                        nikemodal.style.marginLeft = '270px';
+                    }
+                    if(sidebar.getBoundingClientRect().width <= 100) {
+                        nikemodal.style.marginLeft = '100px';
+                    }
+                    stockxmodal.style.marginLeft = `${nikemodal.getBoundingClientRect().width + nikemodal.offsetLeft+30}px`;
+                }, 0);
+                function leavefunc (textid, iconid, iconurl) {
+                    document.getElementById(textid).style.color = '#333333';
+                    document.getElementById(iconid).src = iconurl;
+                }
+                function hoverfunc (textid, iconid, iconurl) {
+                    document.getElementById(textid).style.color = 'white';
+                    document.getElementById(iconid).src = iconurl;
+                }
+            </script>
+        </div>
+    </body>
+</html>
