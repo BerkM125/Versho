@@ -37,12 +37,12 @@
             <main class="s-layout__content">
                 <div id="nikemodal" class="modal" style="display:block; border-radius:10px; border:none;box-shadow:none;">
                     <div class="modal-content" style="border-radius:10px;border:none;box-shadow:none;">
-                      <img src="images/nikelogo.png" style="width:60px;"/>
+                      <img class="logo" src="images/nikelogo.png" style="width:60px;"/>
                     </div>
                 </div>
                 <div id="stockxmodal" class="modal" style="display:block; border-radius:10px; box-shadow:none;border:none;">
                     <div class="modal-content" style="border-radius:10px;border:none;box-shadow:none;">
-                      <img src="images/stockxlogo.jpg" style="width:60px;"/>
+                      <img class="logo" src="images/stockxlogo.jpg" style="width:60px;"/>
                     </div>
                 </div>
             </main>
@@ -52,10 +52,14 @@
                     let nikemodal = document.getElementById("nikemodal");
                     let stockxmodal = document.getElementById("stockxmodal");
                     if(sidebar.getBoundingClientRect().width >= 56) {
-                        nikemodal.style.marginLeft = '250px';
+                        nikemodal.style.marginLeft = '260px';
+                        document.getElementsByClassName('logo')[0].style.width = '60px';
+                        document.getElementsByClassName('logo')[1].style.width = '60px';
                     }
                     if(sidebar.getBoundingClientRect().width <= 56) {
-                        nikemodal.style.marginLeft = '90px';
+                        nikemodal.style.marginLeft = '70px';
+                        document.getElementsByClassName('logo')[0].style.width = '40px';
+                        document.getElementsByClassName('logo')[1].style.width = '40px';
                     }
                     stockxmodal.style.marginLeft = `${nikemodal.getBoundingClientRect().width + nikemodal.offsetLeft+20}px`;
                 }, 0);
