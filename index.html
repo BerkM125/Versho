@@ -47,10 +47,28 @@
             </main>
 
             <script>
+                //Intro animation
+                setTimeout(function() {
+                    document.body.style.opacity = 1;
+                    document.body.style.backgroundImage = "none";
+                    document.body.style.backgroundSize = "cover";
+                    document.body.style.backgroundColor = "#ffffff";
+                }, 1500);
+
+                function introAnimation() {
+                    document.body.style.opacity = 0;
+                    document.body.style.backgroundImage = "url('images/vershologo.png')";
+                    document.body.style.backgroundPosition = "center";
+                    document.body.style.backgroundSize = "300px";
+                }
+                introAnimation();
+
+                //Constantly looping scaling function
                 setInterval(function() {
                     let sidebar = document.getElementsByClassName('s-sidebar__nav')[0];
                     let nikemodal = document.getElementById("nikemodal");
                     let stockxmodal = document.getElementById("stockxmodal");
+
                     if(sidebar.getBoundingClientRect().width >= 56) {
                         nikemodal.style.marginLeft = '220px';
                         stockxmodal.style.height = '80%';
@@ -61,33 +79,40 @@
                         stockxmodal.style.marginTop = `100px`;
 
                     }
-                    if(sidebar.getBoundingClientRect().width <= 56) {
+                    if (sidebar.getBoundingClientRect().width <= 56) {
                         nikemodal.style.marginLeft = '70px';
                         stockxmodal.style.height = '55%';
-                        nikemodal.style.height = '55%';
+                        nikemodal.style.height = '45%';
                         stockxmodal.style.width = '90%';
                         nikemodal.style.width = '90%';
                         stockxmodal.style.marginLeft = `${nikemodal.offsetLeft+20}px`;
-                        console.log(nikemodal.offsetHeight);
                         stockxmodal.style.marginTop = `${nikemodal.offsetHeight+110}px`;
-
                     }
                     
                 }, 0);
+                //Callback to nike store XMLHTTPREQUEST
                 function nikereqListener () {
-                    console.log(this.responseText);
+                    //Unecessary GUI removal
                     document.getElementById('nikemodalcontent').insertAdjacentHTML('beforeend', this.responseText);
+                    document.getElementById('MobileMenuButton').remove();
+                    //Specific html node removals
                     document.getElementsByClassName('pre-l-wrapper mauto-sm d-sm-flx flx-dir-sm-r flx-jc-sm-sb flx-wr-sm-nw')[0].remove();
                     document.getElementsByClassName('pre-l-brand-header d-sm-h d-lg-b z3')[0].remove();
                     document.getElementsByClassName('icon-btn ripple d-sm-b')[0].remove();
                     document.getElementsByClassName('pre-btn-header ripple mr3-sm d-sm-h d-lg-ib')[0].remove();
                     document.getElementsByClassName('pre-search-input-box d-sm-b flx-dir-lg-c flx-ai-lg-fe d-lg-flx flx-gro-sm-1 flx-gro-lg-0')[0].remove();
+                    //Image card removals
+                    let imagecards = document.getElementsByClassName('product-card__hero-image');
+                    while(imagecards.length > 0) {
+                        for(let n = 0; n < imagecards.length; n++)
+                            imagecards[n].remove();
+                    }
                 }
-
                 var nikereq = new XMLHttpRequest();
                 nikereq.addEventListener("load", nikereqListener);
                 nikereq.open("GET", "https://www.nike.com/w?q=air%20jordan&vst=air%20jordan");
                 nikereq.send();
+                //Sidebar functions
                 function leavefunc (textid, iconid, iconurl) {
                     document.getElementById(textid).style.color = '#333333';
                     document.getElementById(iconid).src = iconurl;
