@@ -9,8 +9,9 @@ let stockxparams = {
 };
 
 class productclass {
-    constructor(price, model, brand, imageurl, gender, category, description) {
-        this.price = price;
+    constructor(lowestask, highestbid, model, brand, imageurl, gender, category, description) {
+        this.price = lowestask;
+        this.highestbid = highestbid;
         this.model = model;
         this.brand = brand;
         this.category = category;
@@ -22,7 +23,8 @@ class productclass {
 }
 
 function stockxproducthandler (products) {
-    stockxproduct = new productclass(products["0"].price, 
+    stockxproduct = new productclass(products["0"].lowest_ask, 
+                                     products["0"].highest_bid,
                                      products["0"].model, 
                                      products["0"].brand, 
                                      products["0"].thumbnail_url, 
@@ -32,6 +34,12 @@ function stockxproducthandler (products) {
     console.log(products);
 }
 
+function generatestockxhtml (name) {
+    let htmlstr;
+    htmlstr = `<html><head><style type="text/css">@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap'); body {margin-top:15px;} p{font-family: 'Montserrat', sans-serif;font-size: 1em;} .shoepic{width: 10em;}</style></head><body><p>Name: ${name}</p><p style="color: red;">Highest Bid: $${stockxproduct.highestbid}</p><p style="color:lime;">Lowest Ask: $${stockxproduct.price}</p><p>Model: ${stockxproduct.model}</p><p>Brand: ${stockxproduct.brand}</p><img class="shoepic" src="${stockxproduct.imageurl}"/><br>${stockxproduct.description}</body></html>`;
+    return htmlstr;
+}
+
 app.get("/getstockx/:name", (req, res) => {
     console.log(req.params);
     try {
@@ -39,7 +47,11 @@ app.get("/getstockx/:name", (req, res) => {
         .then((products) => {
             stockxproducthandler(products); 
             console.log(stockxproduct);
-            res.send(stockxproduct);
+            res.setHeader('Access-Control-Allow-Origin', '*');
+            res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+            res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+            res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+            res.send(generatestockxhtml(req.params.name));
         }).catch(err => console.log(`Error searching: ${err.message}`));
         
     }

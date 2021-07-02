@@ -34,14 +34,14 @@
             <!-- Content -->
 
             <main class="s-layout__content">
-                <div id="nikemodal" class="modal" style="display:block; border-radius:10px; border:none;box-shadow:none;">
-                    <div id="nikemodalcontent" class="modal-content" style="border-radius:10px;border:none;box-shadow:none;">
+                <div id="nikemodal" class="modal" style="display:block; border:none;box-shadow:none;">
+                    <div id="nikemodalcontent" class="modal-content" style="border:none;box-shadow:none;">
                       
                     </div>
                 </div>
-                <div id="stockxmodal" class="modal" style="display:block; border-radius:10px; box-shadow:none;border:none;">
-                    <div class="modal-content" style="border-radius:10px;border:none;box-shadow:none;">
-                      <img class="logo" src="images/stockxlogo.jpg" style="width:60px;"/>
+                <div id="stockxmodal" class="modal" style="display:block; box-shadow:none;border:none;">
+                    <div id="stockxmodalcontent" class="modal-content" style="border:none;box-shadow:none;">
+                      <img class="logo" src="images/stockxlogo.jpg" style="width:80px;"/>
                     </div>
                 </div>
             </main>
@@ -83,7 +83,7 @@
                         nikemodal.style.marginLeft = '70px';
                         stockxmodal.style.height = '55%';
                         nikemodal.style.height = '45%';
-                        stockxmodal.style.width = '90%';
+                        stockxmodal.style.width = '87%';
                         nikemodal.style.width = '90%';
                         stockxmodal.style.marginLeft = `${nikemodal.offsetLeft+20}px`;
                         stockxmodal.style.marginTop = `${nikemodal.offsetHeight+110}px`;
@@ -110,8 +110,18 @@
                 }
                 var nikereq = new XMLHttpRequest();
                 nikereq.addEventListener("load", nikereqListener);
-                nikereq.open("GET", "https://www.nike.com/w?q=air%20jordan&vst=air%20jordan");
+                nikereq.open("GET", "https://www.nike.com/w?q=Nike Air Force 1 Low white 07&vst=Nike Air Force 1 Low white 07");
                 nikereq.send();
+
+                //Callback to stockx server XMLHTTPREQUEST
+                function stockxreqListener () {
+                    document.getElementById('stockxmodalcontent').insertAdjacentHTML('beforeend', this.responseText);
+                }
+                var stockxreq = new XMLHttpRequest();
+                stockxreq.addEventListener("load", stockxreqListener);
+                stockxreq.open("GET", "http://2e224a4cd24c.ngrok.io/getstockx/Nike Air Force 1 Low white 07");
+                stockxreq.send();
+
                 //Sidebar functions
                 function leavefunc (textid, iconid, iconurl) {
                     document.getElementById(textid).style.color = '#333333';
