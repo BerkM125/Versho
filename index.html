@@ -95,12 +95,14 @@
                     //Unecessary GUI removal
                     document.getElementById('nikemodalcontent').insertAdjacentHTML('beforeend', this.responseText);
                     document.getElementById('MobileMenuButton').remove();
+                    document.getElementsByClassName('l-footer bg-black u-full-width n52bd')[0].remove();
                     //Specific html node removals
                     document.getElementsByClassName('pre-l-wrapper mauto-sm d-sm-flx flx-dir-sm-r flx-jc-sm-sb flx-wr-sm-nw')[0].remove();
                     document.getElementsByClassName('pre-l-brand-header d-sm-h d-lg-b z3')[0].remove();
                     document.getElementsByClassName('icon-btn ripple d-sm-b')[0].remove();
                     document.getElementsByClassName('pre-btn-header ripple mr3-sm d-sm-h d-lg-ib')[0].remove();
                     document.getElementsByClassName('pre-search-input-box d-sm-b flx-dir-lg-c flx-ai-lg-fe d-lg-flx flx-gro-sm-1 flx-gro-lg-0')[0].remove();
+                    
                     //Image card removals
                     let imagecards = document.getElementsByClassName('product-card__hero-image');
                     while(imagecards.length > 0) {
