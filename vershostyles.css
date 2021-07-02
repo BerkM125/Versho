@@ -193,7 +193,6 @@ a {
     width: 37%;
     height: 80%; 
     border: 1px solid #888;
-    overflow: auto;
 }
 
 /* Modal Content/Box */
@@ -201,7 +200,13 @@ a {
     background-color: #fefefe;
     width: 100%;
     height: 99.5%;
-    overflow: hidden;
+    overflow:auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none; 
+}
+
+.modal-content::-webkit-scrollbar {
+    display: none;
 }
 
 #nikemodal {
