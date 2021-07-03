@@ -12,9 +12,13 @@
     <body>
         <div class="s-layout">
             <div class="s-layout__sidebar">
-                <div>
+                <header>
                     <img id="logoid" src="images/vershologo.png" style="height:65px;"/>
-                </div>
+                    <input type="text" class="searchelement" id="searchbar" value="Nike Air Force 1 Low White"/>
+                    <svg id="searchsvg" onclick="onsearch()" class="searchelement" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </header>
                 <nav class="s-sidebar__nav">
                     <ul>
                         <li>
@@ -41,7 +45,7 @@
                 </div>
                 <div id="stockxmodal" class="modal" style="display:block; box-shadow:none;border:none;">
                     <div id="stockxmodalcontent" class="modal-content" style="border:none;box-shadow:none;">
-                      <img class="logo" src="images/stockxlogo.jpg" style="width:80px;"/>
+                      <img id="stockxlogoid" class="logo" src="images/stockxlogo.jpg" style="width:80px;"/>
                     </div>
                 </div>
             </main>
@@ -68,30 +72,48 @@
                     let sidebar = document.getElementsByClassName('s-sidebar__nav')[0];
                     let nikemodal = document.getElementById("nikemodal");
                     let stockxmodal = document.getElementById("stockxmodal");
-
+                    let logo = document.getElementById('logoid');
+                    let search = document.getElementById('searchbar');
+                    let searchbtn = document.getElementById('searchsvg');
                     if(sidebar.getBoundingClientRect().width >= 56) {
                         nikemodal.style.marginLeft = '220px';
+                        search.style.marginLeft = '265px';
+                        search.style.fontSize = '1.25em';
+                        searchbtn.style.marginLeft = '515px';
                         stockxmodal.style.height = '80%';
                         nikemodal.style.height = '80%';
                         stockxmodal.style.width = '37%';
                         nikemodal.style.width = '37%';
                         stockxmodal.style.marginLeft = `${nikemodal.getBoundingClientRect().width + nikemodal.offsetLeft+30}px`;
                         stockxmodal.style.marginTop = `100px`;
+                        logo.src = "images/vershologo.png";
+                        logo.style.height = '65px';
 
                     }
                     if (sidebar.getBoundingClientRect().width <= 56) {
                         nikemodal.style.marginLeft = '70px';
+                        search.style.marginLeft = '90px';
+                        search.style.fontSize = '1em';
+                        searchbtn.style.marginLeft = '275px';
                         stockxmodal.style.height = '55%';
                         nikemodal.style.height = '45%';
                         stockxmodal.style.width = '87%';
                         nikemodal.style.width = '90%';
                         stockxmodal.style.marginLeft = `${nikemodal.offsetLeft+20}px`;
                         stockxmodal.style.marginTop = `${nikemodal.offsetHeight+110}px`;
+                        logo.src = "images/flyingshoes.png";
+                        logo.style.height = '45px';
                     }
                     
                 }, 0);
                 //Callback to nike store XMLHTTPREQUEST
                 function nikereqListener () {
+                    e = document.getElementById('nikemodalcontent');
+                    var child = e.lastElementChild; 
+                    while (child) {
+                        e.removeChild(child);
+                        child = e.lastElementChild;
+                    }
                     //Unecessary GUI removal
                     document.getElementById('nikemodalcontent').insertAdjacentHTML('beforeend', this.responseText);
                     document.getElementById('MobileMenuButton').remove();
@@ -110,20 +132,31 @@
                             imagecards[n].remove();
                     }
                 }
-                var nikereq = new XMLHttpRequest();
-                nikereq.addEventListener("load", nikereqListener);
-                nikereq.open("GET", "https://www.nike.com/w?q=Nike Air Force 1 Low white 07&vst=Nike Air Force 1 Low white 07");
-                nikereq.send();
-
-                //Callback to stockx server XMLHTTPREQUEST
                 function stockxreqListener () {
+                    e = document.getElementById('stockxmodalcontent');
+                    var child = e.lastElementChild; 
+                    while (child) {
+                        if(child == document.getElementById('stockxlogoid')) {
+                            break;
+                        }
+                        e.removeChild(child);
+                        child = e.lastElementChild;
+                    }
                     document.getElementById('stockxmodalcontent').insertAdjacentHTML('beforeend', this.responseText);
                 }
-                var stockxreq = new XMLHttpRequest();
-                stockxreq.addEventListener("load", stockxreqListener);
-                stockxreq.open("GET", "https://sleepy-waters-67122.herokuapp.com/getstockx/nike%20air%20force%201%20low%20white%2007");
-                stockxreq.send();
-
+                function onsearch () {
+                    let querystring = document.getElementsByClassName('searchelement')[0].value.toString();
+                    console.log(querystring);
+                    var nikereq = new XMLHttpRequest();
+                    nikereq.addEventListener("load", nikereqListener);
+                    nikereq.open("GET", `https://www.nike.com/w?q=${querystring}&vst=${querystring}`);
+                    nikereq.send();
+                    var stockxreq = new XMLHttpRequest();
+                    stockxreq.addEventListener("load", stockxreqListener);
+                    stockxreq.open("GET", `https://sleepy-waters-67122.herokuapp.com/getstockx/${querystring}`);
+                    stockxreq.send();
+                }
+                onsearch();
                 //Sidebar functions
                 function leavefunc (textid, iconid, iconurl) {
                     document.getElementById(textid).style.color = '#333333';
@@ -133,6 +166,7 @@
                     document.getElementById(textid).style.color = 'white';
                     document.getElementById(iconid).src = iconurl;
                 }
+
             </script>
             
         </div>
