@@ -11,7 +11,7 @@
     </head>
     <body>
         <div class="s-layout">
-            <div class="s-layout__sidebar">
+            <div class="s-layout__sidebar" style="z-index: 99999;">
                 <header>
                     <img id="logoid" src="images/vershologo.png" style="height:65px;"/>
                     <input type="text" class="searchelement" id="searchbar" value="Nike Air Force 1 Low White"/>
@@ -22,12 +22,12 @@
                 <nav class="s-sidebar__nav">
                     <ul>
                         <li>
-                        <a class="s-sidebar__nav-link" href="#versushome" onmouseleave="leavefunc('hometext', 'homeimg', 'images/home.png')" onmouseover="hoverfunc('hometext', 'homeimg', 'images/homeanimated.gif')">
+                        <a class="s-sidebar__nav-link" href="#versushome" onmouseleave="leavefunc('hometext', 'homeimg', 'images/home.png')" onclick="showshopmodals()" onmouseover="hoverfunc('hometext', 'homeimg', 'images/homeanimated.gif')">
                             <img class="menuicon" id="homeimg" style="height: 25px;" src="images/home.png"/><em id="hometext">Home</em>
                         </a>
                         </li>
                         <li>
-                        <a class="s-sidebar__nav-link" href="#trendspage" onmouseleave="leavefunc('trendstext', 'trendimg', 'images/trendchart.png')" onmouseover="hoverfunc('trendstext', 'trendimg', 'images/trendanimated.gif')">
+                        <a class="s-sidebar__nav-link" href="#trendspage" onmouseleave="leavefunc('trendstext', 'trendimg', 'images/trendchart.png')" onclick="showtrends()" onmouseover="hoverfunc('trendstext', 'trendimg', 'images/trendanimated.gif')">
                             <img class="menuicon" id="trendimg" style="height: 25px;" src="images/trendchart.png"/><em id="trendstext">Trends</em>
                         </a>
                         </li>
@@ -38,6 +38,14 @@
             <!-- Content -->
 
             <main class="s-layout__content">
+                <div id="popularmodal" class="modal" style="display:none; border:none;box-shadow:none; width:75%;margin-top:110px;">
+                    <div id="popularmodalcontent" class="modal-content" style="border:none;box-shadow:none;">
+                      <h3><img style="display: inline; margin-bottom:8px; margin-right:5px;" src="images/trendchart.png"/>Trends</h3>
+                      <div id="popularmodalitems">
+
+                      </div>
+                    </div>
+                </div>
                 <div id="nikemodal" class="modal" style="display:block; border:none;box-shadow:none;">
                     <div id="nikemodalcontent" class="modal-content" style="border:none;box-shadow:none;">
                       
@@ -75,7 +83,9 @@
                     let logo = document.getElementById('logoid');
                     let search = document.getElementById('searchbar');
                     let searchbtn = document.getElementById('searchsvg');
+                    let popularmodal = document.getElementById('popularmodalcontent');
                     if(sidebar.getBoundingClientRect().width >= 56) {
+                        popularmodal.style.marginLeft = '267px';
                         nikemodal.style.marginLeft = '220px';
                         search.style.marginLeft = '265px';
                         search.style.fontSize = '1.25em';
@@ -88,9 +98,11 @@
                         stockxmodal.style.marginTop = `100px`;
                         logo.src = "images/vershologo.png";
                         logo.style.height = '65px';
-
+                        if(document.body.contains(document.getElementsByClassName('css-4qyi6t-BannerPaddingWrapper')[0]))
+                            document.getElementsByClassName('css-4qyi6t-BannerPaddingWrapper')[0].style.paddingTop = '40px';
                     }
                     if (sidebar.getBoundingClientRect().width <= 56) {
+                        popularmodal.style.marginLeft = '117px';
                         nikemodal.style.marginLeft = '70px';
                         search.style.marginLeft = '90px';
                         search.style.fontSize = '1em';
@@ -103,9 +115,27 @@
                         stockxmodal.style.marginTop = `${nikemodal.offsetHeight+110}px`;
                         logo.src = "images/flyingshoes.png";
                         logo.style.height = '45px';
+                        if(document.body.contains(document.getElementsByClassName('css-4qyi6t-BannerPaddingWrapper')[0]))
+                            document.getElementsByClassName('css-4qyi6t-BannerPaddingWrapper')[0].style.paddingTop = '100px';
                     }
                     
                 }, 0);
+                function showshopmodals () {
+                    let nikemodal = document.getElementById('nikemodal');
+                    let stockxmodal = document.getElementById('stockxmodal');
+                    let popularmodal = document.getElementById('popularmodal');
+                    nikemodal.style.display = 'block';
+                    stockxmodal.style.display = 'block';
+                    popularmodal.style.display = 'none';
+                }
+                function showtrends () {
+                    let nikemodal = document.getElementById('nikemodal');
+                    let stockxmodal = document.getElementById('stockxmodal');
+                    let popularmodal = document.getElementById('popularmodal');
+                    nikemodal.style.display = 'none';
+                    stockxmodal.style.display = 'none';
+                    popularmodal.style.display = 'block';
+                }
                 //Callback to nike store XMLHTTPREQUEST
                 function nikereqListener () {
                     e = document.getElementById('nikemodalcontent');
@@ -144,19 +174,48 @@
                     }
                     document.getElementById('stockxmodalcontent').insertAdjacentHTML('beforeend', this.responseText);
                 }
+                function popularreqListener () {
+                    document.getElementById('popularmodalitems').insertAdjacentHTML('beforeend', this.responseText);
+                    document.getElementById('site-header').remove();
+                    document.getElementsByClassName('css-1kb2y9b-StyledBrowseHeader')[0].remove();
+                    document.getElementsByClassName('col-md-2 col-xs-12 side-filters hidden-xs hidden-sm')[0].remove();
+                    document.getElementsByClassName('hidden-xs hidden-sm')[0].remove();
+                    document.getElementsByClassName('css-104arvh')[0].remove();
+                    document.getElementsByClassName('css-zfbjl9-PaginationContainer')[0].remove();
+                    document.getElementsByClassName('css-18kmo86-ButtonRow')[0].remove();
+                    document.getElementsByClassName('css-16q9pr7')[0].remove();
+                    document.getElementsByClassName('css-4qyi6t-BannerPaddingWrapper')[0].style.paddingTop = '40px';
+                    document.getElementsByClassName('chakra-container css-bu55a7')[0].style.padding = '0px';
+                    let imagecards = document.getElementsByClassName('css-1u0qmvp euld1y70');
+                    let mainfavicon = document.getElementsByTagName('link')[1].cloneNode();
+                    document.head.append(mainfavicon);
+                    while(imagecards.length > 0) {
+                        for(let n = 0; n < imagecards.length; n++)
+                            imagecards[n].remove();
+                    }
+                }
                 function onsearch () {
                     let querystring = document.getElementsByClassName('searchelement')[0].value.toString();
                     console.log(querystring);
                     var nikereq = new XMLHttpRequest();
+                    var stockxreq = new XMLHttpRequest();
+
                     nikereq.addEventListener("load", nikereqListener);
                     nikereq.open("GET", `https://www.nike.com/w?q=${querystring}&vst=${querystring}`);
                     nikereq.send();
-                    var stockxreq = new XMLHttpRequest();
+                    
                     stockxreq.addEventListener("load", stockxreqListener);
                     stockxreq.open("GET", `https://sleepy-waters-67122.herokuapp.com/getstockx/${querystring}`);
                     stockxreq.send();
                 }
+                function getpopularsales () {
+                    var popularreq = new XMLHttpRequest();
+                    popularreq.addEventListener("load", popularreqListener);
+                    popularreq.open("GET", `https://stockx.com/sneakers/most-popular`);
+                    popularreq.send();
+                }
                 onsearch();
+                getpopularsales();
                 //Sidebar functions
                 function leavefunc (textid, iconid, iconurl) {
                     document.getElementById(textid).style.color = '#333333';
