@@ -147,6 +147,7 @@ function popularreqListener () {
             imagecards[n].remove();
     }
 }
+
 function onsearch () {
     let querystring = document.getElementsByClassName('searchelement')[0].value.toString();
     console.log(querystring);
@@ -169,6 +170,12 @@ function getpopularsales () {
 }
 onsearch();
 getpopularsales();
+
+function search() {
+    if(event.key === 'Enter') {
+        onsearch();     
+    }
+}
 //Sidebar functions
 function leavefunc (textid, iconid, iconurl) {
     document.getElementById(textid).style.color = '#333333';
