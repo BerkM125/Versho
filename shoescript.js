@@ -45,7 +45,8 @@ setInterval(function() {
             document.getElementsByClassName('css-4qyi6t-BannerPaddingWrapper')[0].style.paddingTop = '40px';
     }
     if (sidebar.getBoundingClientRect().width <= 56) {
-        popularmodal.style.marginLeft = '117px';
+        popularmodal.style.marginLeft = '90px';
+        stockchartmodal.style.marginLeft = `${popularmodal.getBoundingClientRect().width+30}px`;
         nikemodal.style.marginLeft = '70px';
         search.style.marginLeft = '30px';
         search.style.fontSize = '1em';
