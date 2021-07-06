@@ -219,14 +219,14 @@ a {
 }
 
 .searchelement {
-    bottom: 91%;
+    bottom: 910px;
     position: absolute;
     width: 25%;
     font-size: 1.25em;
 }
 
 #searchsvg {
-    bottom: 91.5%;
+    bottom: 915px;
     width: 18px;
     transition: width 0.2s ease-in-out;
 }
