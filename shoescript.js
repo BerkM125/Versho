@@ -65,17 +65,21 @@ function showshopmodals () {
     let nikemodal = document.getElementById('nikemodal');
     let stockxmodal = document.getElementById('stockxmodal');
     let popularmodal = document.getElementById('popularmodal');
+    let sidebar = document.getElementsByClassName('s-layout__sidebar')[0];
     nikemodal.style.display = 'block';
     stockxmodal.style.display = 'block';
     popularmodal.style.display = 'none';
+    sidebar.style.zIndex = 0;
 }
 function showtrends () {
     let nikemodal = document.getElementById('nikemodal');
     let stockxmodal = document.getElementById('stockxmodal');
     let popularmodal = document.getElementById('popularmodal');
+    let sidebar = document.getElementsByClassName('s-layout__sidebar')[0];
     nikemodal.style.display = 'none';
     stockxmodal.style.display = 'none';
     popularmodal.style.display = 'block';
+    sidebar.style.zIndex = 99999;
 }
 //Callback to nike store XMLHTTPREQUEST
 function nikereqListener () {
