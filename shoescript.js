@@ -23,8 +23,10 @@ setInterval(function() {
     let search = document.getElementById('searchbar');
     let searchbtn = document.getElementById('searchsvg');
     let popularmodal = document.getElementById('popularmodalcontent');
+    let stockchartmodal = document.getElementById('stockchartmodal');
     if(sidebar.getBoundingClientRect().width >= 56) {
         popularmodal.style.marginLeft = '267px';
+        stockchartmodal.style.marginLeft = `${popularmodal.getBoundingClientRect().width+30}px`;
         nikemodal.style.marginLeft = '220px';
         search.style.marginLeft = '95px';
         search.style.verticalAlign = '-15px';
@@ -65,20 +67,24 @@ function showshopmodals () {
     let nikemodal = document.getElementById('nikemodal');
     let stockxmodal = document.getElementById('stockxmodal');
     let popularmodal = document.getElementById('popularmodal');
+    let stocks = document.getElementById('stockchartmodal');
     let sidebar = document.getElementsByClassName('s-layout__sidebar')[0];
     nikemodal.style.display = 'block';
     stockxmodal.style.display = 'block';
     popularmodal.style.display = 'none';
+    stocks.style.display = 'none';
     sidebar.style.zIndex = 0;
 }
 function showtrends () {
     let nikemodal = document.getElementById('nikemodal');
     let stockxmodal = document.getElementById('stockxmodal');
     let popularmodal = document.getElementById('popularmodal');
+    let stocks = document.getElementById('stockchartmodal');
     let sidebar = document.getElementsByClassName('s-layout__sidebar')[0];
     nikemodal.style.display = 'none';
     stockxmodal.style.display = 'none';
     popularmodal.style.display = 'block';
+    stocks.style.display = 'block';
     sidebar.style.zIndex = 99999;
 }
 //Callback to nike store XMLHTTPREQUEST
@@ -131,6 +137,7 @@ function popularreqListener () {
     document.getElementsByClassName('css-16q9pr7')[0].remove();
     document.getElementsByClassName('css-4qyi6t-BannerPaddingWrapper')[0].style.paddingTop = '40px';
     document.getElementsByClassName('chakra-container css-bu55a7')[0].style.padding = '0px';
+    document.getElementsByClassName('col-md-10')[0].style.padding = '0px';
     let imagecards = document.getElementsByClassName('css-1u0qmvp euld1y70');
     let mainfavicon = document.getElementsByTagName('link')[1].cloneNode();
     document.head.append(mainfavicon);
