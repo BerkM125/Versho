@@ -208,6 +208,7 @@ a {
 .modal-content::-webkit-scrollbar {
     display: none;
 }
+
 #nikemodal {
     margin-left: 220px;
     margin-top: 90px;
@@ -219,14 +220,11 @@ a {
 }
 
 .searchelement {
-    bottom: 910px;
-    position: absolute;
-    width: 25%;
+    width: 33%;
     font-size: 1.25em;
 }
 
 #searchsvg {
-    bottom: 915px;
     width: 18px;
     transition: width 0.2s ease-in-out;
 }

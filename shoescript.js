@@ -26,9 +26,11 @@ setInterval(function() {
     if(sidebar.getBoundingClientRect().width >= 56) {
         popularmodal.style.marginLeft = '267px';
         nikemodal.style.marginLeft = '220px';
-        search.style.marginLeft = '265px';
+        search.style.marginLeft = '95px';
+        search.style.verticalAlign = '-15px';
         search.style.fontSize = '1.25em';
-        searchbtn.style.marginLeft = '515px';
+        searchbtn.style.verticalAlign = '-17px';
+        searchbtn.style.marginLeft = '30px';
         stockxmodal.style.height = '80%';
         nikemodal.style.height = '80%';
         stockxmodal.style.width = '37%';
@@ -43,9 +45,9 @@ setInterval(function() {
     if (sidebar.getBoundingClientRect().width <= 56) {
         popularmodal.style.marginLeft = '117px';
         nikemodal.style.marginLeft = '70px';
-        search.style.marginLeft = '90px';
+        search.style.marginLeft = '30px';
         search.style.fontSize = '1em';
-        searchbtn.style.marginLeft = '275px';
+        searchbtn.style.marginLeft = '50px';
         stockxmodal.style.height = '55%';
         nikemodal.style.height = '45%';
         stockxmodal.style.width = '87%';
