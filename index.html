@@ -14,7 +14,7 @@
             <div class="s-layout__sidebar">
                 <header>
                     <img id="logoid" style="display: inline;" src="images/vershologo.png" style="height:65px;"/>
-                    <input type="text" style="display: inline;" class="searchelement" id="searchbar" value="Nike Air Force 1 Low White"/>
+                    <input type="text" style="display: inline;" class="searchelement" id="searchbar" value="Nike Air Force 1 Low White" onkeydown="search()"/>
                     <svg id="searchsvg" style="display: inline;" onclick="onsearch()" class="searchelement" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                     </svg>
@@ -38,7 +38,7 @@
             <!-- Content -->
 
             <main class="s-layout__content">
-                <div id="popularmodal" class="modal" style="display:none; border:none;box-shadow:none; width:55%;margin-top:110px;z-index:9999;">
+                <div id="popularmodal" class="modal" style="display:none; border:none;box-shadow:none; width:95%;margin-top:110px;z-index:9999;">
                     <div id="popularmodalcontent" class="modal-content" style="border:none;box-shadow:none;">
                       <h3><img style="display: inline; margin-bottom:8px; margin-right:5px;" src="images/popularicon.png"/>Trends</h3>
 
@@ -47,82 +47,7 @@
                       </div>
                     </div>
                 </div>
-                <div id="stockchartmodal" class="modal" style="display: none; border: none; box-shadow: none;width:55%;margin-top:110px;">
-                    <h3><img style="display: inline; margin-bottom:8px; margin-right:5px;" src="images/trendchart.png"/>Stocks</h3>
-                    <div id="stockchartcontent" class="modal-content" style="border:none;box-shadow: none;">
-                        <!-- TradingView Widget BEGIN -->
-                        <div class="tradingview-widget-container" style="width:70%;">
-
-                            <div id="tradingview_f9975"></div>
-                            <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/OTC-ADDYY/" rel="noopener" target="_blank"><span class="blue-text">ADDYY Chart</span></a> by TradingView</div>
-                            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-                            <script type="text/javascript">
-                            new TradingView.widget(
-                            {
-                            "autosize": true,
-                            "symbol": "OTC:ADDYY",
-                            "interval": "D",
-                            "timezone": "Etc/UTC",
-                            "theme": "light",
-                            "style": "1",
-                            "locale": "en",
-                            "toolbar_bg": "#f1f3f6",
-                            "enable_publishing": false,
-                            "hide_top_toolbar": true,
-                            "allow_symbol_change": true,
-                            "container_id": "tradingview_f9975"
-                        }
-                            );
-                            </script>
-                            <div id="tradingview_4cc35"></div>
-                            <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NYSE-NKE/" rel="noopener" target="_blank"><span class="blue-text">NKE Chart</span></a> by TradingView</div>
-                            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-                            <script type="text/javascript">
-                            new TradingView.widget(
-                            {
-                            "autosize": true,
-                            "symbol": "NYSE:NKE",
-                            "interval": "D",
-                            "timezone": "Etc/UTC",
-                            "theme": "light",
-                            "style": "1",
-                            "locale": "en",
-                            "toolbar_bg": "#f1f3f6",
-                            "enable_publishing": false,
-                            "hide_top_toolbar": true,
-                            "allow_symbol_change": true,
-                            "container_id": "tradingview_4cc35"
-                            }
-                            );
-                            </script>
-                        <!-- TradingView Widget BEGIN -->
-                        <div class="tradingview-widget-container">
-                            <div id="tradingview_a13f6"></div>
-                            <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NYSE-UAA/" rel="noopener" target="_blank"><span class="blue-text">UAA Chart</span></a> by TradingView</div>
-                            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-                            <script type="text/javascript">
-                            new TradingView.widget(
-                            {
-                            "autosize": true,
-                            "symbol": "NYSE:UAA",
-                            "interval": "D",
-                            "timezone": "Etc/UTC",
-                            "theme": "light",
-                            "style": "1",
-                            "locale": "en",
-                            "toolbar_bg": "#f1f3f6",
-                            "enable_publishing": false,
-                            "hide_top_toolbar": true,
-                            "allow_symbol_change": true,
-                            "container_id": "tradingview_a13f6"
-                        }
-                            );
-                            </script>
-                        </div>
-                        <!-- TradingView Widget END -->
-                        </div>
-                        <!-- TradingView Widget END -->
-                    </div>
+                <div id="stockchartmodal" class="modal" style="display: none; border: none; box-shadow: none;width:0%;margin-top:110px;">
                 </div>
                 <div id="nikemodal" class="modal" style="display:block; border:none;box-shadow:none;">
                     <div id="nikemodalcontent" class="modal-content" style="border:none;box-shadow:none;">
