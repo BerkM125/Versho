@@ -14,7 +14,7 @@ function introAnimation() {
 }
 introAnimation();
 
-//Constantly looping scaling function, repositions many elements according to viewport size
+//Constantly looping scaling function
 setInterval(function() {
     let sidebar = document.getElementsByClassName('s-sidebar__nav')[0];
     let nikemodal = document.getElementById("nikemodal");
@@ -64,7 +64,6 @@ setInterval(function() {
     }
     
 }, 0);
-
 function showshopmodals () {
     let nikemodal = document.getElementById('nikemodal');
     let stockxmodal = document.getElementById('stockxmodal');
@@ -100,7 +99,7 @@ function nikereqListener () {
     //Unecessary GUI removal
     document.getElementById('nikemodalcontent').insertAdjacentHTML('beforeend', this.responseText);
     document.getElementById('MobileMenuButton').remove();
-    document.getElementsByClassName('l-footer bg-black u-full-width n52bd')[0].remove();
+    document.getElementsByClassName('l-footer bg-black u-full-width nc3a2')[0].remove();
     //Specific html node removals
     document.getElementsByClassName('pre-l-wrapper mauto-sm d-sm-flx flx-dir-sm-r flx-jc-sm-sb flx-wr-sm-nw')[0].remove();
     document.getElementsByClassName('pre-l-brand-header d-sm-h d-lg-b z3')[0].remove();
@@ -140,7 +139,6 @@ function popularreqListener () {
     document.getElementsByClassName('css-4qyi6t-BannerPaddingWrapper')[0].style.paddingTop = '40px';
     document.getElementsByClassName('chakra-container css-bu55a7')[0].style.padding = '0px';
     document.getElementsByClassName('col-md-10')[0].style.padding = '0px';
-    document.getElementsByClassName('page-container')[0].style.position = 'inherit';
     let imagecards = document.getElementsByClassName('css-1u0qmvp euld1y70');
     let mainfavicon = document.getElementsByTagName('link')[1].cloneNode();
     document.head.append(mainfavicon);
@@ -149,7 +147,6 @@ function popularreqListener () {
             imagecards[n].remove();
     }
 }
-
 function onsearch () {
     let querystring = document.getElementsByClassName('searchelement')[0].value.toString();
     console.log(querystring);
@@ -172,12 +169,6 @@ function getpopularsales () {
 }
 onsearch();
 getpopularsales();
-
-function search() {
-    if(event.key === 'Enter') {
-        onsearch();     
-    }
-}
 //Sidebar functions
 function leavefunc (textid, iconid, iconurl) {
     document.getElementById(textid).style.color = '#333333';

@@ -9,11 +9,10 @@ let stockxparams = {
 };
 
 class productclass {
-    constructor(lowestask, highestbid, style, url, model, brand, imageurl, gender, category, description) {
+    constructor(lowestask, highestbid, style, model, brand, imageurl, gender, category, description) {
         this.price = lowestask;
         this.highestbid = highestbid;
         this.style = style;
-        this.url = url;
         this.model = model;
         this.brand = brand;
         this.category = category;
@@ -28,7 +27,6 @@ function stockxproducthandler (products) {
     stockxproduct = new productclass(products["0"].lowest_ask, 
                                      products["0"].highest_bid,
                                      products["0"].searchable_traits.Style,
-                                     products["0"].short_description.toLowerCase(),
                                      products["0"].model, 
                                      products["0"].brand, 
                                      products["0"].thumbnail_url, 
@@ -40,7 +38,7 @@ function stockxproducthandler (products) {
 
 function generatestockxhtml (name) {
     let htmlstr;
-    htmlstr = `<html><head><style type="text/css">@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap'); body {margin-top:15px;} p{font-family: 'Montserrat', sans-serif;font-size: 1em;} .shoepic{width: 14em;}</style></head><body><p>Name: ${name}</p><p>SKU/Style: ${stockxproduct.style}</p><p style="color: red;">Highest Bid: $${stockxproduct.highestbid}</p><p style="color:lime;">Lowest Ask: $${stockxproduct.price}</p><p>Model: ${stockxproduct.model}</p><p>Brand: ${stockxproduct.brand}</p><a href="https://stockx.com/${stockxproduct.url}"><img class="shoepic" src="${stockxproduct.imageurl}"/></a><br><p style="font-size: 1em;">${stockxproduct.description}</p></body></html>`;
+    htmlstr = `<html><head><style type="text/css">@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap'); body {margin-top:15px;} p{font-family: 'Montserrat', sans-serif;font-size: 1em;} .shoepic{width: 14em;}</style></head><body><p>Name: ${name}</p><p>SKU/Style: ${stockxproduct.style}</p><p style="color: red;">Highest Bid: $${stockxproduct.highestbid}</p><p style="color:lime;">Lowest Ask: $${stockxproduct.price}</p><p>Model: ${stockxproduct.model}</p><p>Brand: ${stockxproduct.brand}</p><img class="shoepic" src="${stockxproduct.imageurl}"/><br><p style="font-size: 1em;">${stockxproduct.description}</p></body></html>`;
     return htmlstr;
 }
 
@@ -55,7 +53,6 @@ app.get("/getstockx/:name", (req, res) => {
             res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
             res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
             res.setHeader('Access-Control-Allow-Credentials', true); // If needed
-            //res.send(products);
             res.send(generatestockxhtml(req.params.name));
         }).catch(err => console.log(`Error searching: ${err.message}`));
         
