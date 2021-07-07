@@ -1,0 +1,22 @@
+{
+  "name": "versho",
+  "version": "1.0.0",
+  "description": "versho app package",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "keywords": [
+    "heroku"
+  ],
+  "author": "Versho",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "stockx-api": "^1.1.0"
+  },
+  "engines": {
+    "node": "14.x"
+  }
+}

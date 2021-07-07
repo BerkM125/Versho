@@ -14,7 +14,7 @@ function introAnimation() {
 }
 introAnimation();
 
-//Constantly looping scaling function
+//Constantly looping scaling function, repositions many elements according to viewport size
 setInterval(function() {
     let sidebar = document.getElementsByClassName('s-sidebar__nav')[0];
     let nikemodal = document.getElementById("nikemodal");
@@ -64,6 +64,7 @@ setInterval(function() {
     }
     
 }, 0);
+
 function showshopmodals () {
     let nikemodal = document.getElementById('nikemodal');
     let stockxmodal = document.getElementById('stockxmodal');
