@@ -141,7 +141,7 @@ function popularreqListener () {
     document.getElementsByClassName('chakra-container css-bu55a7')[0].style.padding = '0px';
     document.getElementsByClassName('col-md-10')[0].style.padding = '0px';
     document.getElementsByClassName('page-container')[0].style.position = 'inherit';
-    let imagecards = document.getElementsByClassName('css-1u0qmvp euld1y70');
+    let imagecards = document.getElementsByClassName('css-1c5ij41');
     let mainfavicon = document.getElementsByTagName('link')[1].cloneNode();
     document.head.append(mainfavicon);
     while(imagecards.length > 0) {
