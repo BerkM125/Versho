@@ -130,7 +130,10 @@ function stockxreqListener () {
 function popularreqListener () {
     document.getElementById('popularmodalitems').insertAdjacentHTML('beforeend', this.responseText);
     document.getElementById('site-header').remove();
-    document.getElementsByClassName('css-1kb2y9b-StyledBrowseHeader')[0].remove();
+    document.getElementsByClassName('css-g10a-StyledBrowseHeader')[0].remove();
+    document.getElementsByClassName('css-1ed78i8-StyledSkipToContent')[0].remove();
+    document.getElementsByClassName('css-8th5f9')[0].remove();
+    document.getElementsByClassName('css-b1ilzc')[0].remove();
     document.getElementsByClassName('col-md-2 col-xs-12 side-filters hidden-xs hidden-sm')[0].remove();
     document.getElementsByClassName('hidden-xs hidden-sm')[0].remove();
     document.getElementsByClassName('css-104arvh')[0].remove();
